@@ -1,0 +1,56 @@
+﻿body {
+    max-width: 800px;
+    min-width: 200px;
+    color: dimgrey;
+    margin: 10% 2% 2% 20%;
+}
+
+#input_area {
+    align-self: center;
+    background-color: #e4946b;
+    border: 10px double #eee;
+    margin: auto;
+    text-align: center;
+    font-style: oblique;
+    font-size: 30px;
+    max-width: inherit;
+    max-height: inherit;
+    margin-bottom: auto;
+}
+
+form {
+    margin: 5%;
+    max-width: inherit;
+    margin-bottom: auto}
+
+.list-group {
+    margin: 5%;
+    font-size: 20px;
+    margin-bottom: auto;
+}
+.list-group-item{
+    background-color:#d9534f;
+    color:wheat;
+}
+
+input[type="submit"] {
+    width: 90%;
+    vertical-align: top;
+}
+
+.badge {
+    font-size: 20px;
+    background-color: inherit;
+}
+
+.panel-footer{
+ font-size: 20px;
+}
+
+.panel-heading{
+ font-size: 20px;
+}
+
+.errors{
+	color: red;
+}
