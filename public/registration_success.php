@@ -10,4 +10,5 @@
   <p>Your registration was submitted successfully.</p>
 </div>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/footer.php'); ?>
+

@@ -21,6 +21,8 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10;
 
+alter table `users` add constraint `username` unique (`username`); 
+
 insert into `users` (`first_name`,`last_name`,`email`,`username`,`created_at`) values ('name','lname','email','uname',now());
 
 DROP TABLE IF EXISTS `salespeople`;

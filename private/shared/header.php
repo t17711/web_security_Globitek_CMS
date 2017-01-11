@@ -33,7 +33,7 @@ if(!isset($page_title)) {
     <title><?php echo h($page_title); ?></title>
     <meta charset="utf-8">
     <meta name="description" content="<?php echo h($page_title); ?>">
-	<<link rel="stylesheet" type="text/css" href="CSS/StyleSheet1.css" />
+	<link rel="stylesheet" type="text/css" href="CSS/StyleSheet1.css" />
   </head>
   <body>
   
