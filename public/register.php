@@ -127,29 +127,30 @@ if (is_post_request()) {
 
 ?>
 
+ 
     <!-- TODO: HTML form goes here -->
     <div id="input_area">
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
 
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">First Name: </span>
-                <input class="form-control" type="text" name="first_name" value="<?php echo $outputs['first_name']; ?>" />
-                <span class="input-group-addon">  Last Name: </span>
-                <input class="form-control" type="text" name="last_name" value="<?php echo $outputs['last_name']; ?>" />
+            <div>
+                First Name:
+                <input type="text" name="first_name" value="<?php echo $outputs['first_name']; ?>" />
+                 Last Name:
+                <input type="text" name="last_name" value="<?php echo $outputs['last_name']; ?>" />
             </div>
 
             <hr />
 
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">Email: </span>
-                <input class="form-control" type="text" name="email" value="<?php echo $outputs['email']; ?>" />
+            <div>
+                Email: 
+                <input type="text" name="email" value="<?php echo $outputs['email']; ?>" />
             </div>
 
             <hr />
 
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">Username: </span>
-                <input class="form-control" type="text" name="username" value="<?php echo $outputs['username'] ?>" />
+            <div>
+               Username:
+                <input type="text" name="username" value="<?php echo $outputs['username'] ?>" />
             </div>
 
             <hr />
@@ -161,7 +162,6 @@ if (is_post_request()) {
 
 
     </div>
-
 
 
 </div>
