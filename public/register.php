@@ -21,28 +21,6 @@ foreach ($inputs as $temp) {
 
 $errors = array();
 
-
-// Set default values for all variables the page needs.
-// if this is a POST request, process the form
-// Hint: private/functions.php can help
-// Confirm that POST values are present before accessing them.
-// Perform Validations
-// Hint: Write these in private/validation_functions.php
-// if there were no errors, submit data to database
-// Write SQL INSERT statement
-// $sql = "";
-// For INSERT statments, $result is just true/false
-// $result = db_query($db, $sql);
-// if($result) {
-//   db_close($db);
-//   TODO redirect user to success page
-// } else {
-//   // The SQL INSERT statement failed.
-//   // Just show the error, not the form
-//   echo db_error($db);
-//   db_close($db);
-//   exit;
-// }
 ?>
 
 <?php $page_title = 'Register'; ?>
@@ -61,20 +39,25 @@ if (is_post_request()) {
    
     // read inputs
     $output_vals=array_map('filter_input',[INPUT_POST],$inputs);
+
     // check if any part is empty
    $filled = array_map("is_blank", $output_vals);
 
     for ($i = 0; $i < sizeof($inputs); $i++) {
         if ($filled[$i]) {
             $errors[] = h("The " . $input_tidy[$i] . " cannot be empty");
-        } else {
+        }
+        else {
 
             // now valudate inputs
-            $outputs[$inputs[$i]] = ($output_vals[$i]);
-            if (!has_length($outputs[$inputs[$i]], $length[$i])) {
+            $temp = $output_vals[$i];
+            $outputs[$inputs[$i]] = h($temp);
+            if (!has_length($temp, $length[$i])) {
+
                 $errors[] = h("The " . $input_tidy[$i] . " has to be between " . $length[$i]['min'] .  " and " . $length[$i]['max'] . " length");
             }
-            if (!match_to_array($outputs[$inputs[$i]], $special_chars[$i])) {
+
+            if (!match_to_array($temp, $special_chars[$i])) {
                 $errors[] = h("The " . $input_tidy[$i] . " can only contain " . $special_desc[$i]);
             }
         }
@@ -88,10 +71,12 @@ if (is_post_request()) {
         // db onnected on db function
   
         $stringified_output = [];
+        $htmlified_output=[];
        
         foreach ($output_vals as $out){
-           $stringified_output[]= db_escape($db,$out); 
+           $stringified_output[]= db_escape($db,$out);
         }
+
         $stringified_output[]= db_escape($db,date('Y-m-d H:i:s'));
         
         $sql = "insert into users  ".
@@ -102,14 +87,27 @@ if (is_post_request()) {
                 $sql.=$o."','";
                 
         }
+
+        // delete to fix last ,'. 
         $sql = substr($sql,0,-2);
+
+        // add )
         $sql.= ")";
+
         //echo $sql;
+        
+        // query
         $state_result = db_query($db, $sql);
+        
+        // if query is good 
         if(!$state_result) {  
+            
+            // check if item is already in
             $dup = 'Duplicate entry';
+            
             $len = strlen($dup);
             $err = substr((mysqli_error($db)),0,$len);
+            
             if($err==$dup){
                 $errors[]=h("Username not available");
             }else{
